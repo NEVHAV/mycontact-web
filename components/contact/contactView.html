@@ -1,0 +1,178 @@
+<title>{{ title }}</title>
+
+<header>
+    <div class="fixed">
+    <nav class="top-nav orange darken-4">
+        <div class="container">
+            <div class="row ">
+                <div class="col s2"></div>
+                <div class="col s2 nav-wrapper"><a class="brand-logo left-align" href="#">MY CONTACT</a></div>
+                <div class="col s2"></div>
+                <!--<div class="col s3"><a class="btn-flat waves-effect waves-teal white-text" ng-click="gotoContact()">Show-->
+                    <!--contact</a></div>-->
+                <!--<div class="col s3"><a class="btn-flat waves-effect waves-teal white-text"-->
+                                       <!--ng-click="toggle('add', 0)">New-->
+                    <!--contact</a></div>-->
+            </div>
+        </div>
+    </nav>
+    </div>
+    <div><a ng-click="button-collapse" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a></div>
+    <ul id="nav mobile" class="side-nav fixed">
+        <li><div class="user-view">
+            <div class="background">
+                <img src="bower_components/img/3.jpg">
+            </div>
+            <a href="#"><img class="circle" src="bower_components/img/a.jpg"></a>
+            <a
+                    href="#"><span class="white-text name"><i class="material-icons">perm_identity</i>HieuLT {{
+                user.username }}</span></a>
+            <a href="#"><span class="white-text email"><i class="material-icons">email</i>lytrunghieu5896@gmail.com</span></a>
+        </div></li>
+        <li><a class="waves-effect" ng-click="about()"><i class="material-icons">info</i>About</a></li>
+        <li><a class="waves-effect" ng-click="contact_us()"><i class="material-icons">question_answer</i>Contact
+            us</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="subheader">Tools</a></li>
+        <li><a class="waves-effect" ng-click="toggle('add', 0)"><i class="material-icons">contact_phone</i>New contact</a></li>
+        <li><a class="waves-effect" href="#"><i class="material-icons">power_settings_new</i>Log out</a></li>
+    </ul>
+    <!--<a ng-click="button-collapse" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>-->
+</header>
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col s2"></div>
+            <div class="col s10 header-content-inner">
+                <h1 id="homeHeading">Contact list</h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s2"></div>
+            <div class="input-field col s10">
+                <i class="material-icons prefix">search</i>
+                <input id="icon_prefix" type="text" class="validate" ng-model="contact">
+                <label for="icon_prefix">Search</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s2"></div>
+            <div class="col s10 header-content-inner">
+                <table class="bordered highlight responsive-table">
+                    <thead>
+                        <tr>
+                            <!--<th>Id</th>-->
+                            <th ng-click="sort()">Name<a class="waves-effect waves-red btn-flat"><i
+                                    class="material-icons">swap_vert</i></a></th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="contact in contacts | orderBy: order | filter: contact">
+                            <!--<td>{{ contact.id }}</td>-->
+                            <td>{{ contact.name }}</td>
+                            <td>{{ contact.phone_number }}</td>
+                            <td>{{ contact.email }}</td>
+                            <td>
+                                <a class='dropdown-button btn-floating horizontal red' data-beloworigin="true"
+                                   ng-click="dropdown()"
+                                   data-activates= '{{ contact.id }}'><i class="material-icons">menu</i>
+                                </a>
+                                <ul id='{{ contact.id }}' class='dropdown-content'>
+                                    <li><a ng-click="toggle('edit', contact.id)"><i class="material-icons">mode_edit</i>Edit
+                                    </a></li>
+                                    <li class="divider"></li>
+                                    <li><a ng-click="confirmDelete(contact.id)">
+                                        <i class="material-icons">delete</i>Delete</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--form new/edit-->
+    <div class="modal modal-fixed-footer" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="right waves-effect waves-teal modal-close btn-flat" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="material-icons">close</i></span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ form_title }}</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="frmContacts" class="form-horizontal" novalidate="">
+
+                        <div class="form-group error">
+                            <label class="col-sm-3 control-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control has-error" id="name" name="name" placeholder="Name" value="{{name}}"
+                                       ng-model="contact.name" ng-required="true">
+                                <span class="help-inline"
+                                      ng-show="frmContacts.name.$invalid && frmContacts.name.$touched">Name field is required</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Phone number</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" value="{{phone_number}}"
+                                       ng-model="contact.phone_number" ng-required="true">
+                                <span class="help-inline"
+                                      ng-show="frmContacts.phone_number.$invalid && frmContacts.phone_number.$touched">Phone
+                                    number field is required</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" value="{{email}}"
+                                       ng-model="contact.email" ng-required="true">
+                                <span class="help-inline"
+                                      ng-show="frmContacts.phone_number.$invalid && frmContacts.phone_number.$touched">Mail field is required</span>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn waves-effect" id="btn-save" ng-click="save(modal, id)" ng-disabled="frmContacts.$invalid">Save changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!--modal contact us-->
+    <div id="contact_us" class="modal">
+        <div class="modal-content">
+            <h4>Contact us</h4>
+            <p>Name: Ly Trung Hieu</p>
+            <p>Phone number: 01642835529</p>
+            <p>Email: lytrunghieu5896@gmail.com</p>
+            <p>Facebook: fb.com/trunghieu.ly</p>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+    <!--modal about-->
+    <div id="about" class="modal">
+        <div class="modal-content">
+            <h4>About</h4>
+            <p>My contact: show all of my contact, add new contact, search phone number in my contact, delete and
+                more</p>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+</main>

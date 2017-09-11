@@ -1,0 +1,112 @@
+<title>Home</title>
+<main>
+    <nav>
+        <div class="nav-wrapper orange darken-4">
+            <a class="brand-logo" href="#">MY CONTACT</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <a ng-click="signIn()">Sign in</a>
+                </li>
+                <!--<li>-->
+                    <!--<a ng-click="gotoContact()">Show contact</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#">Search contact</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#">Delete contact</a>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </nav>
+    <!--<div class="parallax-container">-->
+        <!--<div class="parallax"><img src="bower_components/img/2.jpg"></div>-->
+    <!--</div>-->
+
+    <div class="slider">
+        <ul class="slides">
+            <li>
+                <img src="bower_components/img/header.jpg"> <!-- random image -->
+                <div class="caption center-align">
+                    <h3>MY CONTACT</h3>
+                    <h5 class="light grey-text text-lighten-3">More comfortable</h5>
+                </div>
+            </li>
+            <li>
+                <img src="bower_components/img/2.jpg"> <!-- random image -->
+                <div class="caption left-align">
+                    <h3>MY CONTACT</h3>
+                    <h5 class="light grey-text text-lighten-3">More convenient</h5>
+                </div>
+            </li>
+            <li>
+                <img src="bower_components/img/3.jpg"> <!-- random image -->
+                <div class="caption right-align">
+                    <h3>MY CONTACT</h3>
+                    <h5 class="light grey-text text-lighten-3">More simple</h5>
+                </div>
+            </li>
+            <li>
+                <img src="bower_components/img/4.jpg"> <!-- random image -->
+                <div class="caption center-align">
+                    <h3>MY CONTACT</h3>
+                    <h5 class="light grey-text text-lighten-3">Always free</h5>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section white">
+        <div class="row container">
+            <h2 class="header orange-text center">Get your online contact - more convenient, more
+                comfortable</h2>
+            <hr>
+            <p class="center">My contact: show all of my contact, add new contact, search phone number in my contact,
+                    delete
+                    and more</p>
+        </div>
+    </div>
+
+    <!--modal signIn-->
+    <div class="modal" id="signIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="right waves-effect waves-teal modal-close btn-flat" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="material-icons">close</i></span></button>
+                    <h4 class="modal-title center" id="myModalLabel">Sign in</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="frmSignIn" class="form-horizontal" novalidate="">
+                        <div class="form-group error">
+                            <label class="col-sm-3 control-label">Username</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control has-error" id="username" name="username" placeholder="Username" ng-model="user.username" value="{{ username }}" ng-required="true">
+                                <span class="help-inline"
+                                      ng-show="frmSignIn.username.$invalid && frmSignIn.username.$touched"><a class="red-text">Username field is required</a></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password"  ng-model="user.password" value="{{ password }}" ng-required="true">
+                                <span class="help-inline"
+                                      ng-show="frmSignIn.password.$invalid && frmSignIn.password.$touched"><a class="red-text">Password field is required</a></span>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn waves-effect" id="btn-save" ng-click="sign()" ng-disabled="frmSignIn.$invalid">Sign in</button>
+                <a class="btn waves-effect waves-red waves-teal white blue-text" ng-click="newUser()">Create new
+                    account</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+

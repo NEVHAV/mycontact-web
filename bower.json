@@ -1,0 +1,17 @@
+{
+  "name": "HieuLT",
+  "description": "contacts",
+  "main": "app.js",
+  "keywords": [
+    "angularjs",
+    "contacts"
+  ],
+  "authors": [
+    "HieuLT"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "dependencies": {
+    "angular": "1.6.4"
+  }
+}

@@ -1,0 +1,8 @@
+.center {
+text-align: right;
+}
+
+.button-pos {
+    position: fixed;
+    padding-right: 1000px;
+}
